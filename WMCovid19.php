@@ -56,6 +56,12 @@ foreach($countries as $tr)
         
 }
 
+usort($parsed["countries"], function($a, $b) {
+    $a["cases"] = str_replace(",", "", $a["cases"]);
+    $b["cases"] = str_replace(",", "", $b["cases"]);
+    return $a["cases"] <  $b["cases"];
+});
+
 header('Content-Type: application/json');
 echo json_encode($parsed, JSON_PRETTY_PRINT);
 
